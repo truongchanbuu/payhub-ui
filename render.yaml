@@ -1,0 +1,16 @@
+services:
+  - type: web
+    name: payhub-ui
+    runtime: node
+    branch: main
+    autoDeployTrigger: checksPass
+    plan: free
+    numInstances: 1
+    buildCommand: npm ci --omit=dev
+    startCommand: npm start
+    healthCheckPath: /healthz
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PAYHUB_URL
+        value: https://payhub-2u1i.onrender.com
